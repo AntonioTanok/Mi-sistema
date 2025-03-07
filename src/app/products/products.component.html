@@ -1,0 +1,40 @@
+<div class="main-container">
+    <div class="form-card">
+      <!-- Título -->
+      <h2 class="title">Carga de Facturas para Pago</h2>
+  
+      <!-- Formulario -->
+      <form>
+        <!-- Campo: Orden de Compra -->
+        <div class="form-group">
+          <label for="purchase_order">Orden de Compra</label>
+          <input type="text" id="purchase_order" class="form-control" placeholder="Ingresar la orden de compra" required />
+        </div>
+  
+        <!-- Campo: Cargar Orden de Compra -->
+        <div class="form-group">
+          <label for="order_file">Orden de Compra</label>
+          <input type="file" id="order_file" class="form-control-file" accept=".pdf,.jpg,.jpeg,.png" required />
+          <p class="form-text">Formatos aceptados: PDF, JPG, PNG</p>
+        </div>
+  
+        <!-- Campo: Cargar Factura (PDF) -->
+        <div class="form-group">
+          <label for="invoice_file">Factura (PDF)</label>
+          <input type="file" id="invoice_file" class="form-control-file" accept=".pdf" required />
+          <p class="form-text">Solo se acepta formato PDF</p>
+        </div>
+  
+        <!-- Campo: Cargar XML -->
+        <div class="form-group">
+          <label for="xml_file">XML</label>
+          <input type="file" id="xml_file" class="form-control-file" accept=".xml" required />
+          <p class="form-text">Solo se acepta formato XML</p>
+        </div>
+  
+        <!-- Botón de enviar -->
+        <button type="submit" class="btn-submit">Subir Archivos</button>
+      </form>
+    </div>
+  </div>
+  
