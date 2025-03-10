@@ -1,1 +1,77 @@
-settings works!
+<!-- Contenedor principal -->
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4">
+      <!-- Título -->
+      <h2 class="text-center text-primary mb-4">Carga de Facturas para Pago</h2>
+  
+      <!-- Formulario -->
+      <form>
+        <!-- Campo: Orden de Compra -->
+        <div class="mb-3">
+          <label for="purchase_order" class="form-label fw-semibold">Orden de Compra</label>
+          <input type="text" id="purchase_order" class="form-control" placeholder="Ingresar la orden de compra" required />
+        </div>
+  
+        <!-- Campo: Cargar Orden de Compra -->
+        <div class="mb-3">
+          <label for="order_file" class="form-label fw-semibold">Orden de Compra</label>
+          <input type="file" id="order_file" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+          <small class="form-text text-muted">Formatos aceptados: PDF, JPG, PNG</small>
+        </div>
+  
+        <!-- Campo: Cargar Factura (PDF) -->
+        <div class="mb-3">
+          <label for="invoice_file" class="form-label fw-semibold">Factura (PDF)</label>
+          <input type="file" id="invoice_file" class="form-control" accept=".pdf" required />
+          <small class="form-text text-muted">Solo se acepta formato PDF</small>
+        </div>
+  
+        <!-- Campo: Cargar XML -->
+        <div class="mb-3">
+          <label for="xml_file" class="form-label fw-semibold">XML</label>
+          <input type="file" id="xml_file" class="form-control" accept=".xml" required />
+          <small class="form-text text-muted">Solo se acepta formato XML</small>
+        </div>
+  
+        <!-- Botones -->
+        <div class="d-flex justify-content-between gap-2">
+          <!-- Botón de Descargar -->
+          <button type="button" onclick="downloadFiles()" class="btn btn-success w-100">
+            <i class="fas fa-download"></i> Descargar
+          </button>
+  
+          <!-- Botón de Aceptar -->
+          <button type="button" onclick="notifyUser('accepted')" class="btn btn-primary w-100">
+            <i class="fas fa-check-circle"></i> Aceptar
+          </button>
+  
+          <!-- Botón de Rechazar -->
+          <button type="button" onclick="notifyUser('rejected')" class="btn btn-danger w-100">
+            <i class="fas fa-times-circle"></i> Rechazar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Script para funcionalidad de botones -->
+  <script>
+    function downloadFiles() {
+      alert('Aquí iría la lógica para descargar los archivos.');
+    }
+  
+    function notifyUser(status) {
+      const message = status === 'accepted' 
+        ? 'Documentos aceptados. Notificación enviada al usuario.' 
+        : 'Documentos rechazados. Notificación enviada al usuario.';
+      alert(message);
+    }
+  </script>
+  
+  <!-- Agregar Bootstrap 5 y FontAwesome -->
+  <link 
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  

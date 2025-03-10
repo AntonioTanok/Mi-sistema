@@ -1,0 +1,59 @@
+/* Mejorar apariencia de la tarjeta */
+.card {
+    border: none;
+    border-radius: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2); /* Sombreado más marcado */
+  }
+  
+  /* Contenedor principal ocupa todo el espacio disponible */
+  .container-fluid {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f6f9;
+  }
+  
+  /* Aseguramos que el card ocupa todo el espacio necesario */
+  .card-body {
+    padding: 2rem;
+  }
+  
+  /* Títulos */
+  h1, h2 {
+    font-weight: 600;
+    color: #343a40;
+  }
+  
+  /* Estilo para las etiquetas */
+  .form-label {
+    font-weight: 500;
+    color: #495057;
+  }
+  
+  /* Estilo para los botones */
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-weight: 600;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Línea discreta para separar la sección */
+  hr {
+    border-top: 1px solid #e0e0e0;
+    margin: 20px 0;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 1rem;
+    }
+  }
+  

@@ -8,7 +8,15 @@
 </div> -->
 
 
-<app-left-sidebar
+
+<div *ngIf="!sesionActiva" class="h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('/assets/images/fondo5.png');">
+  <app-login></app-login>
+</div>
+
+
+<div *ngIf="sesionActiva" class="h-screen flex items-center justify-center bg-gray-600  text-2xl">
+
+  <app-left-sidebar
   [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
   (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
 />
@@ -17,3 +25,6 @@
   [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()"
   [screenWidth]="screenWidth()"
 />
+
+
+</div>

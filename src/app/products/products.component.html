@@ -1,40 +1,43 @@
-<div class="main-container">
-    <div class="form-card">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card border-0 shadow-sm rounded-3 p-4 bg-light" style="max-width: 600px; width: 100%;">
+    <div class="card-body">
       <!-- Título -->
-      <h2 class="title">Carga de Facturas para Pago</h2>
-  
+      <h2 class="card-title text-center fw-semibold mb-4 text-dark">Carga de Facturas</h2>
+
       <!-- Formulario -->
       <form>
         <!-- Campo: Orden de Compra -->
-        <div class="form-group">
-          <label for="purchase_order">Orden de Compra</label>
-          <input type="text" id="purchase_order" class="form-control" placeholder="Ingresar la orden de compra" required />
+        <div class="mb-3">
+          <label for="purchase_order" class="form-label text-dark fw-medium">Orden de Compra</label>
+          <input type="text" id="purchase_order" class="form-control form-control-lg rounded-2" placeholder="Ejemplo: OC123456" required />
         </div>
-  
+
         <!-- Campo: Cargar Orden de Compra -->
-        <div class="form-group">
-          <label for="order_file">Orden de Compra</label>
-          <input type="file" id="order_file" class="form-control-file" accept=".pdf,.jpg,.jpeg,.png" required />
-          <p class="form-text">Formatos aceptados: PDF, JPG, PNG</p>
+        <div class="mb-3">
+          <label for="order_file" class="form-label text-dark fw-medium">Adjuntar Orden de Compra</label>
+          <input type="file" id="order_file" class="form-control form-control-lg rounded-2" accept=".pdf,.jpg,.jpeg,.png" required />
+          <small class="text-secondary">Formatos: PDF, JPG, PNG</small>
         </div>
-  
+
         <!-- Campo: Cargar Factura (PDF) -->
-        <div class="form-group">
-          <label for="invoice_file">Factura (PDF)</label>
-          <input type="file" id="invoice_file" class="form-control-file" accept=".pdf" required />
-          <p class="form-text">Solo se acepta formato PDF</p>
+        <div class="mb-3">
+          <label for="invoice_file" class="form-label text-dark fw-medium">Factura (PDF)</label>
+          <input type="file" id="invoice_file" class="form-control form-control-lg rounded-2" accept=".pdf" required />
+          <small class="text-secondary">Solo se acepta formato PDF</small>
         </div>
-  
+
         <!-- Campo: Cargar XML -->
-        <div class="form-group">
-          <label for="xml_file">XML</label>
-          <input type="file" id="xml_file" class="form-control-file" accept=".xml" required />
-          <p class="form-text">Solo se acepta formato XML</p>
+        <div class="mb-3">
+          <label for="xml_file" class="form-label text-dark fw-medium">Archivo XML</label>
+          <input type="file" id="xml_file" class="form-control form-control-lg rounded-2" accept=".xml" required />
+          <small class="text-secondary">Solo se acepta formato XML</small>
         </div>
-  
+
         <!-- Botón de enviar -->
-        <button type="submit" class="btn-submit">Subir Archivos</button>
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-dark btn-lg w-100 rounded-2">Subir Archivos</button>
+        </div>
       </form>
     </div>
   </div>
-  
+</div>

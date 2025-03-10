@@ -1,0 +1,28 @@
+/* Contenedor de la tarjeta */
+.login-card {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  /* Botón de inicio de sesión */
+  .btn-primary {
+    transition: background 0.3s ease-in-out, transform 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+  }
+  
+  /* Sección de la imagen */
+  .bg-primary {
+    background: linear-gradient(135deg, #0056b3, #007bff);
+  }
+  
+  .img-fluid {
+    max-height: 100%;
+    object-fit: cover;
+  }
+  

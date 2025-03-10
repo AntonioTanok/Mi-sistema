@@ -1,0 +1,13 @@
+.container-fluid {
+    background-color: #343a40; /* Color oscuro tipo sidebar */
+    border-radius: 10px;
+  }
+  
+  h2 {
+    margin: 0;
+  }
+  
+  button {
+    font-weight: bold;
+  }
+  

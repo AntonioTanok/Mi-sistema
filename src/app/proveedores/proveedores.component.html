@@ -1,0 +1,40 @@
+<div class="container-fluid p-3">
+    <!-- Encabezado con botón "Agregar +" -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h5 text-white">Proveedores</h2>
+      <button class="btn btn-primary btn-sm" (click)="agregarProveedor()">Agregar +</button>
+    </div>
+  
+    <!-- Tabla de proveedores -->
+    <div class="table-responsive">
+      <table class="table table-dark table-bordered table-sm">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th class="text-center">Editar</th>
+            <th class="text-center">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let proveedor of proveedores">
+            <td>{{ proveedor.nombre }}</td>
+            <td>{{ proveedor.telefono }}</td>
+            <td>{{ proveedor.correo }}</td>
+            <td class="text-center">
+              <button class="btn btn-warning btn-sm" (click)="editarProveedor(proveedor)">
+                ✏️
+              </button>
+            </td>
+            <td class="text-center">
+              <button class="btn btn-danger btn-sm" (click)="eliminarProveedor(proveedor)">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
