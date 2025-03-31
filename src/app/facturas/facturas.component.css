@@ -11,7 +11,7 @@
   /* Tarjeta del formulario con más sombreado */
   .form-card {
     width: 100%;
-    max-width: 600px;
+    max-width: 600px; /*maximizar el tamaño del formulario*/
     background: white;
     padding: 30px;
     border-radius: 10px;

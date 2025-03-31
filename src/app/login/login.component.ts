@@ -43,7 +43,7 @@ export class LoginComponent {
     console.log("loginData: ", loginData)
     console.log("llamando endpoint login...")
 
-    this.http.post<{ token: string}> ('http://localhost:8000/login', loginData).subscribe({
+    this.http.post<{ token: string, name: string }>('http://localhost:8000/login', loginData).subscribe({
       next: (response) => {
         console.log("llamada api existosa")
         //lo que va a pasar cuando la api responda exitosamente con codigo 200 (el json recibido desde la api cae en response)
@@ -52,6 +52,7 @@ export class LoginComponent {
         if (response && response.token) {
           localStorage.setItem('token', response.token); // Guardar token en localStorage
           console.log('Token almacenado en localStorage:', response.token);
+          localStorage.setItem('username', response.name);
           // Recargar la página después de guardar el token
           location.reload();
         } else {

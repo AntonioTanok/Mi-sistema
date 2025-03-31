@@ -1,11 +1,11 @@
-<div class="sidenav bg-dark text-white vh-100 p-3" [ngClass]="{ 'sidenav-collapsed': isLeftSidebarCollapsed }">
+<div class="sidenav bg-success bg-opacity-50 text-black vh-100 p-3" [ngClass]="{ 'sidenav-collapsed': isLeftSidebarCollapsed }">
   <!-- Logo y botón de colapso -->
   <div class="logo-container d-flex align-items-center justify-content-between mb-3">
-    <button class="btn btn-outline-light btn-sm" (click)="toggleCollapse()">
+    <button class="btn btn-outline-dark btn-sm" (click)="toggleCollapse()">
       <i class="fas fa-bars"></i>
     </button>
-    <span *ngIf="!isLeftSidebarCollapsed" class="fw-bold">SCPT</span>
-    <button *ngIf="!isLeftSidebarCollapsed" class="btn btn-outline-light btn-sm" (click)="closeSidenav()">
+    <span *ngIf="!isLeftSidebarCollapsed" class="fw-bold"><h2>SCPT</h2></span>
+    <button *ngIf="!isLeftSidebarCollapsed" class="btn btn-outline-dark btn-sm" (click)="closeSidenav()">
       <i class="fas fa-times"></i>
     </button>
   </div>
@@ -13,7 +13,7 @@
   <!-- Menú de navegación -->
   <ul class="nav flex-column">
     <li *ngFor="let item of items" class="nav-item">
-      <a class="nav-link text-white d-flex align-items-center" 
+      <a class="nav-link text-black d-flex align-items-center" 
          [routerLink]="item.routeLink" 
          routerLinkActive="active" 
          (click)="item.label === 'Cerrar Sesión' ? logout() : null">

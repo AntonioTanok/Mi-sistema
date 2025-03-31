@@ -1,0 +1,192 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg rounded-3 p-4 mb-5 w-100" style="max-width: 100%;">
+  
+  
+      <!-- Formulario de Alta Proveedor -->
+      <hr class="my-4">
+      <h4 class="text-center text-dark fw-semibold">Alta de Nuevo Proveedor</h4>
+      <div class="bg-light p-4 rounded-3 border border-primary">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="fw-semibold">Nombre de la empresa:</p>
+            <p class="fw-semibold">RFC:</p>
+            <p class="fw-semibold">Domicilio Fiscal:</p>
+            <p class="fw-semibold">Nombre del representante legal:</p>
+            <p class="fw-semibold">Actividad Económica:</p>
+          </div>
+          <div class="col-md-6">
+            <p>Jonathan / Servicios de Ingeniería en Computación SA de CV</p>
+            <p>SIC091224H53</p>
+            <p>Av Paraíso, 463, Sopeña, Silao, Guanajuato</p>
+            <p>Antonio Caudillo</p>
+            <p>Servicios de IT y venta de equipo de cómputo</p>
+          </div>
+        </div>
+      </div>
+  
+      <hr class="my-4">
+  
+  
+  
+  <!-- Validacion de alta de documentos -->
+  
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg rounded-3 p-4 mb-5 w-100" style="max-width: 100%;">  
+  
+      
+      <!-- Sección con fondo gris claro para el título y el dropdown -->
+      <div class="bg-light p-4 rounded-3 mb-4">
+        <!-- Título de Validación de Documentos -->
+        <div class="mb-4 text-center border-bottom border-dark pb-3">
+          <h2 class="text-dark fw-semibold">Validación de Documentos</h2>
+        </div>
+  
+        <!-- Selección de usuario y botón de carga -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="w-75">
+            <label for="usuario" class="form-label fw-semibold">Proveedor:</label>
+            <select class="form-select" id="usuario" [(ngModel)]="usuarioSeleccionado" required>
+              <option value="" disabled selected>Selecciona un proveedor</option>
+              <option *ngFor="let user of usuarios" [value]="user.name">{{ user.name }}</option>
+            </select>
+          </div>
+          <button class="btn btn-primary ms-3" (click)="cargarDocumentos()">Cargar Documentos</button>
+        </div>
+      </div>
+  
+      <!-- Formulario de Alta Proveedor -->
+      <hr class="my-4">
+      <h4 class="text-center text-dark fw-semibold">Alta de Nuevo Proveedor</h4>
+      <div class="bg-light p-4 rounded-3 border border-primary">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="fw-semibold">Nombre de la empresa:</p>
+            <p class="fw-semibold">RFC:</p>
+            <p class="fw-semibold">Domicilio Fiscal:</p>
+            <p class="fw-semibold">Nombre del representante legal:</p>
+            <p class="fw-semibold">Actividad Económica:</p>
+          </div>
+          <div class="col-md-6">
+            <p>Jonathan / Servicios de Ingeniería en Computación SA de CV</p>
+            <p>SIC091224H53</p>
+            <p>Av Paraíso, 463, Sopeña, Silao, Guanajuato</p>
+            <p>Antonio Caudillo</p>
+            <p>Servicios de IT y venta de equipo de cómputo</p>
+          </div>
+        </div>
+      </div>
+  
+      <hr class="my-4">
+  
+      <!-- Formulario de carga de archivos -->
+      <form>
+        <h5 class="text-center text-dark mb-4">Documentación Requerida</h5>
+        <div class="row g-3">
+          <!-- Acta Constitutiva -->
+          <div class="col-12 col-md-6">
+            <label for="acta_constitutiva" class="form-label">Acta Constitutiva</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-acta-constitutiva.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- Poder Representante Legal -->
+          <div class="col-12 col-md-6">
+            <label for="poder_representante" class="form-label">Poder Representante Legal</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-poder-representante.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- Identificación Representante Legal -->
+          <div class="col-12 col-md-6">
+            <label for="identificacion_representante" class="form-label">Identificación Representante Legal o Dueño</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-identificacion-representante.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- Comprobante Domicilio Fiscal -->
+          <div class="col-12 col-md-6">
+            <label for="comprobante_domicilio" class="form-label">Comprobante de Domicilio Fiscal</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-comprobante-domicilio.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- Constancia de Situación Fiscal -->
+          <div class="col-12 col-md-6">
+            <label for="constancia_fiscal" class="form-label">Constancia de Situación Fiscal</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-constancia-fiscal.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- Opinión de Cumplimiento Positiva SAT -->
+          <div class="col-12 col-md-6">
+            <label for="opinion_sat" class="form-label">Opinión de Cumplimiento Positiva SAT</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-opinion-sat.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- Opinión de Cumplimiento Positiva IMSS -->
+          <div class="col-12 col-md-6">
+            <label for="opinion_imss" class="form-label">Opinión de Cumplimiento Positiva IMSS</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-opinion-imss.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- Opinión de Cumplimiento Positiva Infonavit -->
+          <div class="col-12 col-md-6">
+            <label for="opinion_infonavit" class="form-label">Opinión de Cumplimiento Positiva Infonavit</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-opinion-infonavit.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- Estado de Cuenta Bancario -->
+          <div class="col-12 col-md-6">
+            <label for="estado_cuenta" class="form-label">Estado de Cuenta Bancario</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-estado-cuenta.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+  
+          <!-- REPSE -->
+          <div class="col-12 col-md-6">
+            <label for="repse" class="form-label">REPSE (Registro de Proveedores de Servicios Especializados)</label>
+            <div class="d-flex justify-content-between align-items-center">
+              <a href="documento-repse.pdf" target="_blank" class="text-primary">
+                <i class="fas fa-eye"></i> Ver Documento
+              </a>
+            </div>
+          </div>
+        </div>
+  
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-primary btn-lg w-100">Guardar Documentación</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,95 +1,84 @@
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow-lg rounded-3 p-5" style="max-width: 90%; width: 100%;">
-      <!-- Encabezado del formulario -->
-      <div class="mb-4">
-        <h1 class="text-center text-dark fw-semibold mb-4">Alta de Nuevo Proveedor</h1>
-        <div class="bg-light p-4 rounded-3 border border-secondary">
-          <div class="row">
-            <!-- Columna izquierda -->
-            <div class="col-md-6">
-              <p class="fw-semibold">Nombre de la empresa:</p>
-              <p class="fw-semibold">RFC:</p>
-              <p class="fw-semibold">Domicilio Fiscal:</p>
-              <p class="fw-semibold">Nombre del representante legal:</p>
-              <p class="fw-semibold">Actividad Económica:</p>
-            </div>
-            <!-- Columna derecha -->
-            <div class="col-md-6">
-              <p>Jonathan / Servicios de Ingeniería en Computación SA de CV</p>
-              <p>SIC091224H53</p>
-              <p>Av Paraíso, 463, Sopeña, Silao, Guanajuato</p>
-              <p>Antonio Caudillo</p>
-              <p>Servicios de IT y venta de equipo de cómputo</p>
-            </div>
-          </div>
+  <div class="card shadow-lg rounded-3 p-4 mb-5 w-100" style="max-width: 100%;">
+
+
+    <!-- Formulario de Alta Proveedor -->
+    <hr class="my-4">
+    <h4 class="text-center text-dark fw-semibold">Alta de Nuevo Proveedor</h4>
+    <div class="bg-light p-4 rounded-3 border border-primary">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="fw-semibold">Nombre de la empresa:</p>
+          <p class="fw-semibold">RFC:</p>
+          <p class="fw-semibold">Domicilio Fiscal:</p>
+          <p class="fw-semibold">Nombre del representante legal:</p>
+          <p class="fw-semibold">Actividad Económica:</p>
+        </div>
+        <div class="col-md-6">
+          <p>Jonathan / Servicios de Ingeniería en Computación SA de CV</p>
+          <p>SIC091224H53</p>
+          <p>Av Paraíso, 463, Sopeña, Silao, Guanajuato</p>
+          <p>Antonio Caudillo</p>
+          <p>Servicios de IT y venta de equipo de cómputo</p>
         </div>
       </div>
-  
-      <!-- Línea discreta para separar la sección -->
-      <hr class="my-4" style="border-color: #e0e0e0; border-width: 1px;">
-  
-      <!-- Formulario de carga de archivos -->
-      <form>
-        <h2 class="text-center text-dark mb-4">Documentación Requerida</h2>
-  
-        <!-- Campo de carga de archivos -->
-        <div class="row g-3">
-          <div class="col-12 col-md-6">
-            <label for="acta_constitutiva" class="form-label">Acta Constitutiva</label>
-            <input type="file" id="acta_constitutiva" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="poder_representante" class="form-label">Poder Representante Legal</label>
-            <input type="file" id="poder_representante" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="identificacion_representante" class="form-label">Identificación Representante Legal o Dueño</label>
-            <input type="file" id="identificacion_representante" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="comprobante_domicilio" class="form-label">Comprobante de Domicilio Fiscal</label>
-            <input type="file" id="comprobante_domicilio" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="constancia_fiscal" class="form-label">Constancia de Situación Fiscal</label>
-            <input type="file" id="constancia_fiscal" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="opinion_sat" class="form-label">Opinión de Cumplimiento Positiva SAT</label>
-            <input type="file" id="opinion_sat" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="opinion_imss" class="form-label">Opinión de Cumplimiento Positiva IMSS</label>
-            <input type="file" id="opinion_imss" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="opinion_infonavit" class="form-label">Opinión de Cumplimiento Positiva Infonavit</label>
-            <input type="file" id="opinion_infonavit" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="estado_cuenta" class="form-label">Estado de Cuenta Bancario</label>
-            <input type="file" id="estado_cuenta" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-  
-          <div class="col-12 col-md-6">
-            <label for="repse" class="form-label">REPSE (Registro de Proveedores de Servicios Especializados)</label>
-            <input type="file" id="repse" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
-          </div>
-        </div>
-  
-        <!-- Botón de Enviar -->
-        <div class="text-center mt-4">
-          <button type="submit" class="btn btn-primary btn-lg w-100">Enviar Documentación</button>
-        </div>
-      </form>
     </div>
+
+    <hr class="my-4">
+
+    <!-- Formulario de carga de archivos -->
+    <form>
+      <h5 class="text-center text-dark mb-4">Documentación Requerida</h5>
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <label for="acta_constitutiva" class="form-label">Acta Constitutiva</label>
+          <input type="file" id="acta_constitutiva" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="poder_representante" class="form-label">Poder Representante Legal</label>
+          <input type="file" id="poder_representante" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="identificacion_representante" class="form-label">Identificación Representante Legal o Dueño</label>
+          <input type="file" id="identificacion_representante" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="comprobante_domicilio" class="form-label">Comprobante de Domicilio Fiscal</label>
+          <input type="file" id="comprobante_domicilio" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="constancia_fiscal" class="form-label">Constancia de Situación Fiscal</label>
+          <input type="file" id="constancia_fiscal" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="opinion_sat" class="form-label">Opinión de Cumplimiento Positiva SAT</label>
+          <input type="file" id="opinion_sat" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="opinion_imss" class="form-label">Opinión de Cumplimiento Positiva IMSS</label>
+          <input type="file" id="opinion_imss" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="opinion_infonavit" class="form-label">Opinión de Cumplimiento Positiva Infonavit</label>
+          <input type="file" id="opinion_infonavit" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="estado_cuenta" class="form-label">Estado de Cuenta Bancario</label>
+          <input type="file" id="estado_cuenta" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="repse" class="form-label">REPSE (Registro de Proveedores de Servicios Especializados)</label>
+          <input type="file" id="repse" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required />
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary btn-lg w-100">Enviar Documentación</button>
+      </div>
+    </form>
   </div>
-  
+</div>
+
+
+
+

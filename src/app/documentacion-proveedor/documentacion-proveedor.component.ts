@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core'; //Oninit
-import { HttpClient } from '@angular/common/http'; //
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; //
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-facturas',
+  selector: 'app-documentacion-proveedor',
   standalone: true,
   imports: [CommonModule, FormsModule], // ✅ Asegurarse de que FormsModule está importado
-  templateUrl: './facturas.component.html',
-  styleUrls: ['./facturas.component.css']
+  templateUrl: './documentacion-proveedor.component.html',
+  styleUrl: './documentacion-proveedor.component.css'
 })
-export class FacturasComponent implements OnInit {  // implentens
+export class DocumentacionProveedorComponent implements OnInit {
   usuarios: any[] = [];
   usuarioSeleccionado: string = '';
 
@@ -31,3 +31,4 @@ export class FacturasComponent implements OnInit {  // implentens
     // Se desactiva la funcionalidad del botón por ahora
   }
 }
+

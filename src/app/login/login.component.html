@@ -29,16 +29,19 @@
         </form>
 
         <div class="mt-4 text-center">
-          <p class="mb-1">
+          <!-- <p class="mb-1">
             ¿No tienes cuenta? 
-            <a href="#" class="text-decoration-none text-primary fw-semibold">Regístrate aquí</a>
+            <a href="#" class="text-decoration-none text-primary fw-semibold">Regístrate aquí</a> -->
             <!-- <a [routerLink]="['/registrar']" class="text-decoration-none text-primary fw-semibold">Regístrate aquí</a> -->
 
-          </p>
+          <!-- </p> -->
           <p>
             ¿Olvidaste tu contraseña? 
-            <a href="#" class="text-decoration-none text-primary fw-semibold">Recuperar aquí</a>
+            <a [routerLink]="['/restaurar-credenciales']" class="text-decoration-none text-primary fw-semibold">
+              Recuperar aquí
+            </a>
           </p>
+          
         </div>
       </div>
 

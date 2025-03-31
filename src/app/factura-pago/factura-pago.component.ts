@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; //
 
 @Component({
-  selector: 'app-facturas',
+  selector: 'app-factura-pago',
   standalone: true,
   imports: [CommonModule, FormsModule], // ✅ Asegurarse de que FormsModule está importado
-  templateUrl: './facturas.component.html',
-  styleUrls: ['./facturas.component.css']
+  templateUrl: './factura-pago.component.html',
+  styleUrl: './factura-pago.component.css'
 })
-export class FacturasComponent implements OnInit {  // implentens
+export class FacturaPagoComponent implements OnInit {  // implentens
   usuarios: any[] = [];
   usuarioSeleccionado: string = '';
 

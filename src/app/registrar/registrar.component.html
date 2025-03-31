@@ -11,6 +11,11 @@
             </div>
   
             <div class="mb-3">
+              <label for="confirmEmail" class="form-label">Confirmar Correo Electrónico</label>
+              <input type="email" id="confirmEmail" class="form-control" placeholder="name@domain.com" required />
+            </div>
+  
+            <div class="mb-3">
               <label for="password" class="form-label">Contraseña</label>
               <input type="password" id="password" class="form-control" placeholder="Password" required />
             </div>
@@ -29,3 +34,38 @@
     </div>
   </div>
    -->
+
+
+   <!-- <div class="container mt-5">
+    <div class="card mx-auto" style="max-width: 400px;">
+      <h2 class="card-header text-center">Registrarse</h2>
+      <div class="card-body">
+        <form [formGroup]="registroForm" (ngSubmit)="registrarUsuario()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" id="email" formControlName="email" class="form-control" placeholder="correo@ejemplo.com">
+            <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched" class="text-danger small">
+              Correo inválido
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" id="password" formControlName="password" class="form-control" placeholder="••••••••">
+            <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched" class="text-danger small">
+              Mínimo 6 caracteres
+            </div>
+          </div>
+  
+          <button type="submit" [disabled]="registroForm.invalid" class="btn btn-primary w-100">
+            Registrarse
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+   -->
+
+
+
+   

@@ -16,15 +16,23 @@ export class LeftSidebarComponent {
   @Output() changeIsLeftSidebarCollapsed = new EventEmitter<boolean>();
 
   items = [
-    { routeLink: 'dashboard', icon: 'fal fa-home', label: 'Dashboard' },
-    { routeLink: 'proveedores', icon: 'fal fa-truck', label: 'Proveedores' }, // Se agrega "Proveedores"
-    { routeLink: 'alta-proveedor', icon: 'fal fa-plus-circle', label: 'Alta-proveedor' },
+    // { routeLink: 'dashboard', icon: 'fal fa-home', label: 'Dashboard' }, // Perfil admin 
+    { routeLink: 'perfil', icon: 'fal fa-user-circle', label: 'Perfil' }, // Perfil proveedor
+    // { routeLink: 'usuarios', icon: 'fal fa-user', label: 'Usuarios' }, // Perfil admin
+    // { routeLink: 'proveedores', icon: 'fal fa-truck', label: 'Proveedores' }, // Se agrega "Proveedores"
+    { routeLink: 'alta-proveedor', icon: 'fal fa-user-plus', label: 'Alta-Proveedor' }, // Perfil proveedor
+    // { routeLink: 'documentacion-proveedor', icon: 'fal fa-file', label: 'Documentos/Proveedor' }, // Perfil admin
 
-    { routeLink: 'facturas', icon: 'fal fa-file-invoice-dollar', label: 'Facturas' },
-    { routeLink: 'products', icon: 'fal fa-box-open', label: 'Products' },
-    { routeLink: 'pages', icon: 'fal fa-file', label: 'Pages' },
-    { routeLink: 'settings', icon: 'fal fa-cog', label: 'Settings' },
 
+    { routeLink: 'facturas', icon: 'fal fa-file-invoice-dollar', label: 'Facturas' }, // Perfil user
+    // { routeLink: 'factura-pago', icon: 'fal fa-file-invoice-dollar', label: 'Facturas/Proveedor' }, // Perfil admin
+
+    // { routeLink: 'products', icon: 'fal fa-box-open', label: 'Products' },
+   // { routeLink: 'pages', icon: 'fal fa-file', label: 'Pages' },
+    // { routeLink: 'settings', icon: 'fal fa-cog', label: 'Settings' },
+    // { routeLink: 'registrar', icon: 'fal fa-cog', label: 'Usuariosprueba' },
+    { routeLink: 'restaurar-credenciales', icon: 'fal fa-key', label: 'Restaurar' },
+  
     { routeLink: 'logout', icon: 'fal fa-sign-out', label: 'Cerrar Sesión' },
   ];
 

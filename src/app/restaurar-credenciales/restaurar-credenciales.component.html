@@ -1,0 +1,36 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card login-card shadow-lg">
+      <div class="row g-0">
+  
+        <!-- Sección del formulario -->
+        <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
+          <h2 class="text-center text-primary fw-bold mb-4">Restaurar Contraseña</h2>
+          <p class="text-muted text-center mb-4">Ingresa tu correo y un administrador te enviará una nueva contraseña.</p>
+  
+          <form [formGroup]="resetForm">
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" id="email" formControlName="email" class="form-control" placeholder="name@domain.com" required />
+            </div>
+  
+            <button type="button" (click)="solicitarNuevaContrasena()" class="btn btn-primary w-100">
+              Solicitar Nueva Contraseña
+            </button>
+          </form>
+  
+          <div class="mt-4 text-center">
+            <a [routerLink]="['/login']" class="text-decoration-none text-primary fw-semibold">
+              Volver al inicio de sesión
+            </a>
+          </div>
+        </div>
+  
+        <!-- Sección de imagen -->
+        <div class="col-md-6 d-none d-md-flex bg-light justify-content-center p-3">
+          <img src="/assets/images/20.png" alt="Logo de la empresa" class="img-fluid m-3">
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
