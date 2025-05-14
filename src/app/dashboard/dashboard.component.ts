@@ -38,15 +38,19 @@ export class DashboardComponent implements OnInit {
     this.username = localStorage.getItem('username') || 'Usuario';
     this.loadUserStatistics();
   }
+  
 
   loadUserStatistics(): void {
     this.http.get<any[]>('http://localhost:8000/usuarios').subscribe(response => {
-      this.totalUsers = response.filter(user => user.role === 'user').length;
+      this.totalUsers = response.filter(user => user.role === 'Proveedor').length;
       this.totalAdmins = response.filter(user => user.role === 'admin').length;
       this.renderChart();
       this.renderPieChart();
+    }, error => {
+      console.error('Error al obtener los datos:', error);
     });
   }
+  
 
   renderChart(): void {
     if (this.chartInstance) {
@@ -56,11 +60,11 @@ export class DashboardComponent implements OnInit {
     this.chartInstance = new Chart(this.usersChart.nativeElement, {
       type: 'bar',
       data: {
-        labels: ['Usuarios', 'Administradores'],
+        labels: ['Proveedores', 'Administradores'],
         datasets: [{
           label: 'Cantidad',
           data: [this.totalUsers, this.totalAdmins],
-          backgroundColor: ['#aed6f1', '#ec7063'],
+          backgroundColor: ['#aed6f1', '#3DEAC5'],
           borderWidth: 1
         }]
       },
@@ -95,10 +99,10 @@ export class DashboardComponent implements OnInit {
     this.pieChartInstance = new Chart(this.usersPieChart.nativeElement, {
       type: 'pie',
       data: {
-        labels: ['Usuarios', 'Administradores'],
+        labels: ['Proveedores', 'Administradores'],
         datasets: [{
           data: [this.totalUsers, this.totalAdmins],
-          backgroundColor: ['#aed6f1', '#ec7063'],
+          backgroundColor: ['#aed6f1', '#3DEAC5'],
           borderWidth: 1
         }]
       },

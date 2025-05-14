@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
   imports: [ReactiveFormsModule, CommonModule, RouterModule] // Importamos ReactiveFormsModule
 })
 export class LoginComponent {
-  loginForm: FormGroup ;
+  loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.loginForm = this.fb.group({
@@ -22,73 +22,56 @@ export class LoginComponent {
     });
   }
 
-
   iniciarSesion() {
-    console.log("iniciarSesion() function")
+    console.log("iniciarSesion() function");
     console.log("Datos del formulario:", this.loginForm.value);
-
+  
+    // Verificación de formulario
     if (this.loginForm.invalid) {
-       console.error('Formulario inválido');
-       alert('¡Formulario Invalido!.'); //sustituir por estilos dentro del form login
-       return;
+      console.error('Formulario inválido');
+      alert('¡Formulario Inválido!.'); // Alerta si el formulario es inválido
+      return;
     }
-
-    console.log("la info del form es valida, se procedera a realiza la llamada de login a la api")
-
-    //json con datos de email y password a utilizar para la llamada de la api
-    const loginData = this.loginForm.value;
-
-    //llamada a api de login
-
-    console.log("loginData: ", loginData)
-    console.log("llamando endpoint login...")
-
+  
+    console.log("Formulario válido, procediendo con la llamada a la API");
+  
+    // Obtenemos los datos del formulario
+    const loginData = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    };
+  
+    // Llamada a la API de login
+    console.log("loginData:", loginData);
+    console.log("Realizando llamada al endpoint login...");
+  
     this.http.post<{ token: string, name: string }>('http://localhost:8000/login', loginData).subscribe({
       next: (response) => {
-        console.log("llamada api existosa")
-        //lo que va a pasar cuando la api responda exitosamente con codigo 200 (el json recibido desde la api cae en response)
-
-        // Extraer el token del response y guardarlo en localStorage
+        console.log("Llamada a la API exitosa");
+  
+        // Verificar si la respuesta contiene el token
         if (response && response.token) {
-          localStorage.setItem('token', response.token); // Guardar token en localStorage
+          localStorage.setItem('token', response.token); // Guardar el token en localStorage
+          localStorage.setItem('username', response.name); // Guardar el nombre en localStorage
           console.log('Token almacenado en localStorage:', response.token);
-          localStorage.setItem('username', response.name);
-          // Recargar la página después de guardar el token
+          
+          // Recargar la página para reflejar el inicio de sesión
           location.reload();
         } else {
           console.warn('No se recibió un token en la respuesta.');
         }
       },
       error: (error) => {
-        console.log("error durante llamada a la api")
-        //lo que sucede cuando la api responde con un error
+        console.error('Error durante la llamada a la API:', error);
+  
+        // Manejo de error por status code 401
+        if (error.status === 401) {
+          alert('Credenciales incorrectas, por favor intenta nuevamente.');
+        } else {
+          alert('Error en el inicio de sesión. Verifica las credenciales.');
+        }
       }
     });
-
-
-
-
-
-
-    // this.http.post<{ token: string }>('http://localhost:8000/login', loginData).subscribe({
-    //   next: (response) => {
-    //     console.log('Respuesta recibida:', response);
-
-    //     if (response && response.token) {
-    //       localStorage.setItem('token', response.token);
-    //       console.log('Token almacenado en localStorage:', response.token);
-    //       // Recargar la página después de un inicio de sesión exitoso
-    //       location.reload();
-
-    //     } else {
-    //       console.warn('No se recibió un token en la respuesta.');
-    //     }
-    //   },
-    //   error: (error) => {
-    //     console.error('Error en la solicitud:', error);
-    //   }
-    // });
   }
-
-
+  
 }

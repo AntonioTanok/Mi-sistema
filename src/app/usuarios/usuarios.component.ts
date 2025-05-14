@@ -75,8 +75,8 @@
 //     }
 
 //     deleteUser(user: any): void {
-//         if (confirm(`¿Estás seguro de eliminar a ${user.name}?`)) {
-//             this.http.delete(`http://localhost:8000/eliminar/${user.id}`)
+//         if (confirm(¿Estás seguro de eliminar a ${user.name}?)) {
+//             this.http.delete(http://localhost:8000/eliminar/${user.id})
 //                 .subscribe(() => {
 //                     this.successMessage = 'Usuario eliminado correctamente';
 //                     this.getUsuarios();
@@ -88,7 +88,7 @@
 
 //     onRegister(): void {
 //         if (this.isEditMode) {
-//             this.http.put(`http://localhost:8000/editar/${this.newUser.id}`, this.newUser)
+//             this.http.put(http://localhost:8000/editar/${this.newUser.id}, this.newUser)
 //                 .subscribe(() => {
 //                     this.successMessage = 'Usuario actualizado correctamente';
 //                     this.getUsuarios();
@@ -247,8 +247,8 @@
 //     }
 
 //     deleteUser(user: any): void {
-//       if (confirm(`¿Estás seguro de eliminar a ${user.name}?`)) {
-//                     this.http.delete(`http://localhost:8000/eliminar/${user.id}`)
+//       if (confirm(¿Estás seguro de eliminar a ${user.name}?)) {
+//                     this.http.delete(http://localhost:8000/eliminar/${user.id})
 //                         .subscribe(() => {
 //                             this.successMessage = 'Usuario eliminado correctamente';
 //                             this.getUsuarios();
@@ -268,6 +268,8 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Modal } from 'bootstrap';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
     selector: 'app-usuarios',
@@ -291,7 +293,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
     @ViewChild('userModal') modalElement!: ElementRef;
     private modalInstance: Modal | undefined;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private toastr: ToastrService) {}
 
     ngOnInit(): void {
         this.getUsuarios();
@@ -360,25 +362,31 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
     onRegister(): void {
         if (this.isEditMode) {
             this.http.put(`http://localhost:8000/editar/${this.newUser.id}`, this.newUser)
-                .subscribe(() => {
-                    this.successMessage = 'Usuario actualizado correctamente';
-                    this.getUsuarios();
-                    this.closeModal();
-                }, error => {
-                    this.errorMessage = 'Error al actualizar usuario';
+                .subscribe({
+                    next: () => {
+                        this.toastr.success('Usuario actualizado correctamente');
+                        this.getUsuarios();
+                        this.closeModal();
+                    },
+                    error: () => {
+                        this.toastr.error('Error al actualizar usuario');
+                    }
                 });
         } else {
             this.http.post('http://localhost:8000/registrar', this.newUser)
-                .subscribe(() => {
-                    this.successMessage = 'Usuario registrado exitosamente';
-                    this.getUsuarios();
-                    this.closeModal();
-                }, error => {
-                    this.errorMessage = 'Error al registrar usuario';
+                .subscribe({
+                    next: () => {
+                        this.toastr.success('Usuario registrado exitosamente. Bienvendio al Sistema de Gestion de Proveedores');
+                        this.getUsuarios();
+                        this.closeModal();
+                    },
+                    error: () => {
+                        this.toastr.error('Error al registrar usuario. Verifique que los campos no esten vacios y esten llenados correctamente.');
+                    }
                 });
         }
-        this.closeModal();
     }
+    
 
     editUser(user: any): void {
         this.isEditMode = true;
@@ -389,12 +397,16 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
     deleteUser(user: any): void {
         if (confirm(`¿Estás seguro de eliminar a ${user.name}?`)) {
             this.http.delete(`http://localhost:8000/eliminar/${user.id}`)
-                .subscribe(() => {
-                    this.successMessage = 'Usuario eliminado correctamente';
-                    this.getUsuarios();
-                }, error => {
-                    this.errorMessage = 'Error al eliminar usuario';
+                .subscribe({
+                    next: () => {
+                        this.toastr.success('Usuario eliminado correctamente');
+                        this.getUsuarios();
+                    },
+                    error: () => {
+                        this.toastr.error('Error al eliminar usuario');
+                    }
                 });
         }
-    }
+    }    
 }
+

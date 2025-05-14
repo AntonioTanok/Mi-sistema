@@ -1,74 +1,108 @@
-<div class="container-fluid p-3">
-    <!-- Encabezado con botón "Agregar +" -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h2 class="h5 text-white">Proveedores</h2>
-      <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#proveedorModal">
-        Agregar +
-      </button>
-    </div>
-  
-    <!-- Tabla de proveedores -->
-    <div class="table-responsive">
-      <table class="table table-dark table-bordered table-sm">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Correo</th>
-            <th class="text-center">Editar</th>
-            <th class="text-center">Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let proveedor of proveedores">
-            <td>{{ proveedor.nombre }}</td>
-            <td>{{ proveedor.telefono }}</td>
-            <td>{{ proveedor.correo }}</td>
-            <td class="text-center">
-              <button class="btn btn-warning btn-sm" (click)="editarProveedor(proveedor)">
-                ✏️
-              </button>
-            </td>
-            <td class="text-center">
-              <button class="btn btn-danger btn-sm" (click)="eliminarProveedor(proveedor)">
-                🗑️
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container my-4">
+  <!-- Título -->
+  <div class="mb-4 text-center">
+    <h2 class="text-dark fw-semibold">Gestión de Proveedores</h2>
+  </div>
+
+  <!-- Búsqueda y botón nuevo proveedor -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <input [(ngModel)]="searchQuery" (input)="onSearch()" placeholder="Buscar proveedor" class="form-control w-75" />
+    <button class="btn btn-primary ms-2" (click)="openModal()">Nuevo Proveedor</button>
+  </div>
+
+  <!-- Tabla de Proveedores -->
+  <div class="table-responsive shadow-sm rounded bg-white">
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th class="p-2">Nombre</th>
+          <th class="p-2">Teléfono</th>
+          <th class="p-2">Correo</th>
+          <th class="p-2">Código Identificador</th>
+          <th class="p-2">Código Numérico</th>
+          <th class="p-2">Tipo</th>
+          <th class="p-2">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proveedor of paginatedProveedores; let i = index" [ngClass]="{'bg-white': i % 2 === 0, 'table-secondary': i % 2 !== 0}">
+          <td class="p-2">{{ proveedor.nombre }}</td>
+          <td class="p-2">{{ proveedor.telefono }}</td>
+          <td class="p-2">{{ proveedor.correo }}</td>
+          <td class="p-2">{{ proveedor.codigoIdentificador }}</td>
+          <td class="p-2">{{ proveedor.codigoNumerico }}</td>
+          <td class="p-2">{{ proveedor.tipo }}</td>
+          <td class="p-2">
+            <button class="btn btn-warning btn-sm me-2" (click)="editProveedor(proveedor)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteProveedor(proveedor)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Paginación -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <span class="text-muted">Mostrando {{ (currentPage - 1) * pageSize + 1 }} - {{ currentPage * pageSize < totalRecords ? currentPage * pageSize : totalRecords }} de {{ totalRecords }} registros</span>
+      <div class="d-flex align-items-center">
+        <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1" class="btn btn-secondary btn-sm me-2">Anterior</button>
+        <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage * pageSize >= totalRecords" class="btn btn-secondary btn-sm">Siguiente</button>
+        <select (change)="onPageSizeChange($event)" class="form-select ms-2 w-auto">
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
+        </select>
+      </div>
     </div>
   </div>
-  
-  <!-- Modal para Agregar Proveedor -->
-  <div class="modal fade" id="proveedorModal" tabindex="-1" aria-labelledby="proveedorModalLabel" aria-hidden="true">
+
+  <!-- Modal para Nuevo Proveedor -->
+  <div class="modal fade" id="proveedorModal" tabindex="-1" aria-labelledby="proveedorModalLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="proveedorModalLabel">Agregar Proveedor</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          <h5 class="modal-title" id="proveedorModalLabel">Nuevo Proveedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="proveedorForm">
+          <form (ngSubmit)="onRegister()">
             <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" id="nombre" formControlName="nombre" class="form-control" placeholder="Ingrese el nombre" required>
+              <label class="form-label">Nombre</label>
+              <input type="text" class="form-control" [(ngModel)]="newProveedor.nombre" name="nombre" required>
             </div>
             <div class="mb-3">
-              <label for="telefono" class="form-label">Teléfono</label>
-              <input type="text" id="telefono" formControlName="telefono" class="form-control" placeholder="Ingrese el teléfono" required>
+              <label class="form-label">Teléfono</label>
+              <input type="text" class="form-control" [(ngModel)]="newProveedor.telefono" name="telefono" required>
             </div>
             <div class="mb-3">
-              <label for="correo" class="form-label">Correo</label>
-              <input type="email" id="correo" formControlName="correo" class="form-control" placeholder="Ingrese el correo" required>
+              <label class="form-label">Correo</label>
+              <input type="email" class="form-control" [(ngModel)]="newProveedor.correo" name="correo" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Código Identificador</label>
+              <input type="text" class="form-control" [(ngModel)]="newProveedor.codigoIdentificador" name="codigoIdentificador" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Código Numérico</label>
+              <input type="number" class="form-control" [(ngModel)]="newProveedor.codigoNumerico" name="codigoNumerico" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Tipo</label>
+              <select class="form-control" [(ngModel)]="newProveedor.tipo" name="tipo" required>
+                <option value="" disabled selected>Selecciona tipo</option>
+                <option value="Nacional">Nacional</option>
+                <option value="Internacional">Internacional</option>
+              </select>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-secondary me-2" (click)="closeModal()">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Registrar</button>
             </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" (click)="guardarProveedor()">Aceptar</button>
+          <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+          <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

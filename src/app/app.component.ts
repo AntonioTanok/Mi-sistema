@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       this.sesionActiva = true;
     }else{
       console.log("token no existe")
-      this.sesionActiva = false;
+      this.sesionActiva = true; //cambiar validacion a false
     }
    }
 

@@ -1,57 +1,125 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { Modal } from 'bootstrap';  // ✅ Importar Modal de Bootstrap correctamente
+import { FormsModule } from '@angular/forms';
+import { Modal } from 'bootstrap';
+
+
+interface Proveedor {
+  nombre: string;
+  telefono: string;
+  correo: string;
+  codigoIdentificador: string;
+  codigoNumerico: number;
+  tipo: string;
+}
 
 @Component({
   selector: 'app-proveedores',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './proveedores.component.html',
   styleUrls: ['./proveedores.component.css']
 })
+
+
 export class ProveedoresComponent {
-  proveedorForm: FormGroup;
-  proveedores = [
-    { nombre: 'Proveedor 1', telefono: '555-1234', correo: 'proveedor1@example.com' },
-    { nombre: 'Proveedor 2', telefono: '555-5678', correo: 'proveedor2@example.com' }
-  ];
+  proveedores: Proveedor[] = [];
+  filteredProveedores: Proveedor[] = [];
+  paginatedProveedores: Proveedor[] = [];
 
-  constructor(private fb: FormBuilder) {
-    this.proveedorForm = this.fb.group({
-      nombre: ['', [Validators.required]],
-      telefono: ['', [Validators.required]],
-      correo: ['', [Validators.required, Validators.email]]
-    });
+  newProveedor: Proveedor = {
+    nombre: '',
+    telefono: '',
+    correo: '',
+    codigoIdentificador: '',
+    codigoNumerico: 0,
+    tipo: ''
+  };
+
+
+
+  searchQuery = '';
+  currentPage = 1;
+  pageSize = 5;
+  totalRecords = 0;
+
+  errorMessage = '';
+  successMessage = '';
+  
+
+  onSearch() {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredProveedores = this.proveedores.filter(p =>
+      p.nombre.toLowerCase().includes(query) ||
+      p.correo.toLowerCase().includes(query) ||
+      p.tipo.toLowerCase().includes(query)
+    );
+    this.updatePagination();
   }
 
-  guardarProveedor() {
-    if (this.proveedorForm.valid) {
-      this.proveedores.push(this.proveedorForm.value);
-      console.log('Proveedor agregado:', this.proveedorForm.value);
-      this.proveedorForm.reset(); // Limpiar el formulario después de guardar
-      this.cerrarModal(); // Cierra el modal
-    } else {
-      alert('Por favor, complete todos los campos correctamente.');
+  onRegister() {
+    if (!this.newProveedor.nombre || !this.newProveedor.correo || !this.newProveedor.tipo) {
+      this.errorMessage = 'Todos los campos son obligatorios.';
+      return;
     }
+
+    this.proveedores.push({ ...this.newProveedor });
+    this.successMessage = 'Proveedor registrado correctamente.';
+    this.closeModal();
+    this.onSearch();
   }
 
-  editarProveedor(proveedor: any) {
-    console.log('Editar proveedor:', proveedor);
+  editProveedor(proveedor: Proveedor) {
+    this.newProveedor = { ...proveedor };
+    const modal = new (window as any).bootstrap.Modal(document.getElementById('proveedorModal'));
+    modal.show();
   }
 
-  eliminarProveedor(proveedor: any) {
+  deleteProveedor(proveedor: Proveedor) {
     this.proveedores = this.proveedores.filter(p => p !== proveedor);
-    console.log('Proveedor eliminado:', proveedor);
+    this.onSearch();
   }
 
-  cerrarModal() {
+  openModal() {
+    this.newProveedor = {
+      nombre: '',
+      telefono: '',
+      correo: '',
+      codigoIdentificador: '',
+      codigoNumerico: 0,
+      tipo: ''
+    };
+    const modal = new (window as any).bootstrap.Modal(document.getElementById('proveedorModal'));
+    modal.show();
+  }
+
+  closeModal() {
     const modalElement = document.getElementById('proveedorModal');
-    if (modalElement) {
-      const modalInstance = Modal.getInstance(modalElement);
-      modalInstance?.hide(); // Cierra el modal correctamente
-    }
+    const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
+    modal.hide();
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.updatePagination();
+  }
+
+  onPageSizeChange(event: any) {
+    this.pageSize = +event.target.value;
+    this.updatePagination();
+  }
+
+  updatePagination() {
+    this.totalRecords = this.filteredProveedores.length;
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = this.currentPage * this.pageSize;
+    this.paginatedProveedores = this.filteredProveedores.slice(startIndex, endIndex);
+  }
+
+  ngOnInit() {
+    this.filteredProveedores = [...this.proveedores];
+    this.updatePagination();
   }
 }
+
